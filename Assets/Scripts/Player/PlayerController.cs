@@ -192,6 +192,12 @@ public class PlayerController : MonoBehaviour
             verticalVelocity = jumpForce;
             isGrounded = false;
             
+            // Jouer le son du saut
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayJumpSound();
+            }
+            
             // // Animation de saut
             // if (animator != null)
             // {
@@ -326,6 +332,12 @@ public class PlayerController : MonoBehaviour
         isGameActive = false;
         Debug.Log("Game Over !");
         
+        // Arrêter le son de course
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.StopRunningSound();
+        }
+        
         // Animation de mort déjà déclenchée dans OnControllerColliderHit
         // pour une réponse plus rapide
         
@@ -368,6 +380,12 @@ public class PlayerController : MonoBehaviour
         if (animator != null)
         {
             animator.enabled = true;
+        }
+        
+        // Démarrer le son de course
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayRunningSound();
         }
         
         Debug.Log($"ResetPlayer terminé - isGameActive = {isGameActive}");

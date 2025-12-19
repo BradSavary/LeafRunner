@@ -98,6 +98,12 @@ public class GameManager : MonoBehaviour
         currentScore = 0;
         distanceTraveled = 0f;
 
+        // Démarrer la musique de fond
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayBackgroundMusic();
+        }
+
         // Réinitialiser le joueur
         if (playerController != null)
         {
